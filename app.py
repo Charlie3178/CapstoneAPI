@@ -78,6 +78,7 @@ character_schema = CharacterSchema()
 multiple_character_schema = CharacterSchema(many=True)
 
 # Endpoints
+#   Add Endpoint
 @app.route("/character/add", methods=["POST"])
 def add_character():
     if request.content_type != "application/json":
@@ -116,15 +117,21 @@ def add_character():
 
     return jsonify(character_schema.dump(new_record))
 
+#   Get All Endpoint
+
 @app.route("/character/get", methods=["GET"])
 def get_characters():
     characters = db.session.query(Character).all()
     return jsonify(multiple_character_schema.dump(characters))
 
+#   Get By ID Endpoint
+
 @app.route("/character/get/<id>", methods=["GET"])
 def get_character_by_id(id):
     character = db.session.query(Character).filter(Character.id == id).first()
     return jsonify(character_schema.dump(character))
+
+# Delete by ID Endpoint
 
 @app.route("/character/delete/<id>", methods=["DELETE"])
 def delete_character_by_id(id):
@@ -134,6 +141,8 @@ def delete_character_by_id(id):
     db.session.commit()
 
     return jsonify(character_schema.dump(deleted_character))
+
+# Update By ID endpoint
 
 @app.route("/character/update/<id>", methods=["PUT"])
 def update_character_by_id(id):
@@ -168,7 +177,9 @@ def update_character_by_id(id):
     hp = put_data.get("hp")
     
     updated_character = db.session.query(Character).filter(Character.id == id).first()
+
     # print(updated_character)
+
     if pname != None:
         updated_character.pname = pname
     if cname != None:
