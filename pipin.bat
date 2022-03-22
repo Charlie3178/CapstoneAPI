@@ -1,1 +1,1 @@
-pipenv install flask jsonify flask_sqlalchemy flask_marshmallow flask_cors marshmallow-sqlalchemy gunicorn psycopg2
+pipenv install flask jsonify flask_sqlalchemy flask_marshmallow flask_CORS marshmallow-sqlalchemy gunicorn psycopg2

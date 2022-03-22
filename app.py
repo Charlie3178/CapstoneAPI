@@ -70,7 +70,7 @@ class Character(db.Model):
         self.wisdom = wisdom
         self.charisma = charisma
         self.hp = hp
-
+# Schema Definition
 class CharacterSchema(ma.Schema):
     class Meta():
         fields = ("id", "pname", "cname", "pclass", "race", "height", "weight", "gender", "age", "size", "basespeed", "level", "alignment", "description", "biography", "copper", "silver", "gold", "platinum", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "hp")
