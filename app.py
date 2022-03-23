@@ -118,21 +118,18 @@ def add_character():
     return jsonify(character_schema.dump(new_record))
 
 #   Get All Endpoint
-
 @app.route("/character/get", methods=["GET"])
 def get_characters():
     characters = db.session.query(Character).all()
     return jsonify(multiple_character_schema.dump(characters))
 
 #   Get By ID Endpoint
-
 @app.route("/character/get/<id>", methods=["GET"])
 def get_character_by_id(id):
     character = db.session.query(Character).filter(Character.id == id).first()
     return jsonify(character_schema.dump(character))
 
 # Delete by ID Endpoint
-
 @app.route("/character/delete/<id>", methods=["DELETE"])
 def delete_character_by_id(id):
     deleted_character = db.session.query(Character).filter(Character.id == id).first()
@@ -143,7 +140,6 @@ def delete_character_by_id(id):
     return jsonify(character_schema.dump(deleted_character))
 
 # Update By ID endpoint
-
 @app.route("/character/update/<id>", methods=["PUT"])
 def update_character_by_id(id):
     if request.content_type != "application/json":
